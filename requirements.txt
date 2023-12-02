@@ -12,3 +12,5 @@ pytz==2023.3.post1
 referencing==0.31.1
 rpds-py==0.13.2
 Werkzeug==2.2.2
+Flask-SQLAlchemy==3.0.3
+psycopg2-binary==2.9.5
