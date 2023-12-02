@@ -39,7 +39,7 @@ def test_add_user_duplicate_email(test_app, test_database):
     data = json.loads(resp.data.decode())
     assert resp.status_code == 400
     assert 'Sorry. That email already exists.' in data['message']
-    
+
 def test_add_user_invalid_json(test_app, test_database):
     client = test_app.test_client()
     resp = client.post(
@@ -62,4 +62,6 @@ def test_add_user_invalid_json_keys(test_app, test_database):
     data = json.loads(resp.data.decode())
     assert resp.status_code == 400
     assert 'Input payload validation failed' in data['message']
+
+
 

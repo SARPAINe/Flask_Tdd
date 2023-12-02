@@ -2,7 +2,7 @@
 
 
 from flask import Blueprint, request
-from flask_restx import Resource, Api, fields
+from flask_restx import Resource, Api, fields  # updated
 
 from src import db
 from src.api.models import User
@@ -11,15 +11,18 @@ from src.api.models import User
 users_blueprint = Blueprint('users', __name__)
 api = Api(users_blueprint)
 
-# user = api.model('User', {
-#     'id': fields.Integer(readOnly=True),
-#     'username': fields.String(required=True),
-#     'email': fields.String(required=True),
-#     'created_date': fields.DateTime,
-# })
+# new
+user = api.model('User', {
+    'id': fields.Integer(readOnly=True),
+    'username': fields.String(required=True),
+    'email': fields.String(required=True),
+    'created_date': fields.DateTime,
+})
 
 
 class UsersList(Resource):
+
+    @api.expect(user, validate=True)  # new
     def post(self):
         post_data = request.get_json()
         username = post_data.get('username')
